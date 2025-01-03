@@ -32,23 +32,23 @@ def collect_user_rates(user_login):
         page_num += 1  # Переходим на следующую страницу
     return data
 
-user_rates = collect_user_rates(input("Введите данные: "))
-print(len(user_rates))
+rates = collect_user_rates(input("Введите данные: "))
+print(len(rates))
 
-df = pd.DataFrame(user_rates)
-df.to_excel('user_rates1.xlsx')
+df = pd.DataFrame(rates)
+df.to_excel('rates1.xlsx')
 
-def get_rated_films(user_rates):
+def get_rated_films(rates):
     rated_films = []
     while True:
-        for item in user_rates:
+        for item in rates:
             rating = float(item['rating'])  # Преобразуем строку в число с плавающей точкой
             if rating >= 8:
                 rated_films.append(item)
         return rated_films
 
-user_rates_ = get_rated_films(user_rates)
-print(len(user_rates_))
+rates_ = get_rated_films(rates)
+print(len(rates_))
 
-df = pd.DataFrame(user_rates_)
-df.to_excel('user_rates2.xlsx')
+df = pd.DataFrame(rates_)
+df.to_excel('rates2.xlsx')
